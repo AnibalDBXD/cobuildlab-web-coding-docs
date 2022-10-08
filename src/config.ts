@@ -18,7 +18,7 @@ export const OPEN_GRAPH = {
 export type Frontmatter = {
 	title: string;
 	description: string;
-	layout: string;
+	layout?: string;
 	image?: { src: string; alt: string };
 	dir?: 'ltr' | 'rtl';
 	ogLocale?: string;
@@ -47,10 +47,8 @@ export type Sidebar = Record<
 >;
 export const SIDEBAR: Sidebar = {
 	en: {
-		'Section Header': [
+		'Introduction': [
 			{ text: 'Introduction', link: 'en/introduction' },
-			// { text: 'Page 2', link: 'en/page-2' },
-			// { text: 'Page 3', link: 'en/page-3' },
 		],
 		'8base conventions': [
 			{ text: 'Database modeling', link: 'en/8base-conventions/database-modeling' }
