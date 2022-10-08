@@ -1,30 +1,49 @@
 ---
-import { getLanguageFromURL } from '../../languages';
-import { SIDEBAR } from '../../config';
+import type { Frontmatter } from '../../config';
 
 type Props = {
 	currentPage: string;
 };
 
-const { currentPage } = Astro.props as Props;
-const currentPageMatch = currentPage.slice(1);
-const langCode = getLanguageFromURL(currentPage);
-const sidebar = SIDEBAR[langCode];
----
+type SidebarContent = {
+	[key: string]: { title: string; url: string; }[];
+};
 
+const { currentPage } = Astro.props as Props;
+const currentPageMatch = `/${currentPage.slice(1)}`;
+const pages = await Astro.glob<Frontmatter>('../../pages/**/*.md');
+
+const sortedPages = pages.sort((a, b) => {
+	if(a?.url?.startsWith('/introduction')){
+		return -1;
+	}
+	return 0;
+});
+
+const sidebar: SidebarContent = sortedPages.reduce((acc, { url, frontmatter }) => {
+	if(!url || !frontmatter) return acc;
+
+	const sectionTitle = url.split('/').slice(1)[0].replaceAll('-', ' ');
+	const title = frontmatter.title.replaceAll('-', '')
+
+	acc[sectionTitle] = [...(acc[sectionTitle] || []), { title, url }];
+
+	return acc;
+}, {} as SidebarContent);
+
+---
 <nav aria-labelledby="grid-left">
 	<ul class="nav-groups">
-		{Object.entries(sidebar).map(([header, children]) => (
+		{Object.entries(sidebar).map(([header, pages]) => (
 			<li>
 				<div class="nav-group">
-					<h2>{header}</h2>
+					<h3>{header}</h3>
 					<ul>
-						{children.map((child) => {
-							const url = Astro.site?.pathname + child.link;
+						{pages.map(({ title, url }) => {
 							return (
 								<li class="nav-link">
-									<a href={url} aria-current={currentPageMatch === child.link ? 'page' : false}>
-										{child.text}
+									<a href={url} aria-current={currentPageMatch === url ? 'page' : false}>
+										{title}
 									</a>
 								</li>
 							);
@@ -72,6 +91,10 @@ const sidebar = SIDEBAR[langCode];
 		margin-bottom: var(--theme-navbar-height);
 	}
 
+	.nav-group {
+		text-transform: capitalize;
+	}
+
 	.nav-group-title {
 		font-size: 1rem;
 		font-weight: 700;
@@ -88,6 +111,7 @@ const sidebar = SIDEBAR[langCode];
 		color: inherit;
 		text-decoration: none;
 		display: block;
+		text-transform: capitalize;
 	}
 
 	.nav-link a:hover,

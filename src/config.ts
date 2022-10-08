@@ -1,6 +1,6 @@
 export const SITE = {
-	title: 'Documentation',
-	description: 'Your website description.',
+	title: 'CobuildLab Documentation',
+	description: 'Coding conventions.',
 	defaultLanguage: 'en_US',
 };
 
@@ -25,11 +25,6 @@ export type Frontmatter = {
 	lang?: string;
 };
 
-export const KNOWN_LANGUAGES = {
-	English: 'en',
-} as const;
-export const KNOWN_LANGUAGE_CODES = Object.values(KNOWN_LANGUAGES);
-
 export const GITHUB_EDIT_URL = `https://github.com/withastro/astro/tree/main/examples/docs`;
 
 export const COMMUNITY_INVITE_URL = `https://astro.build/chat`;
@@ -39,19 +34,4 @@ export const ALGOLIA = {
 	indexName: 'XXXXXXXXXX',
 	appId: 'XXXXXXXXXX',
 	apiKey: 'XXXXXXXXXX',
-};
-
-export type Sidebar = Record<
-	typeof KNOWN_LANGUAGE_CODES[number],
-	Record<string, { text: string; link: string }[]>
->;
-export const SIDEBAR: Sidebar = {
-	en: {
-		'Introduction': [
-			{ text: 'Introduction', link: 'en/introduction' },
-		],
-		'8base conventions': [
-			{ text: 'Database modeling', link: 'en/8base-conventions/database-modeling' }
-		],
-	},
 };
