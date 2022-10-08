@@ -77,7 +77,7 @@ npm i graphql
 
 2. Create GraphQL-Codegen configuration file (`codegen.yml`) and the root of the project, and point to your GraphQL schema and your `.graphql` operations files:
 
-```yml
+```
 overwrite: true
 schema: SCHEMA_FILE_OR_ENDPOINT_HERE
 documents: "src/**/*.graphql"

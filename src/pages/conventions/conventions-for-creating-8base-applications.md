@@ -173,7 +173,7 @@ When an email from an invitation doesn't exists in the platform, the ideal case 
 
 First we must login to Auth0 account and create a Native type application
 
-![rn auth0](/public/media/nativeApp.png)
+![rn auth0](/media/nativeApp.png)
 
 #### You need the following information:
  - Domain
@@ -182,7 +182,7 @@ First we must login to Auth0 account and create a Native type application
 
 #### Get Your Application Keys
 
-![rn auth0](/public/media/getApiKeys.png)
+![rn auth0](/media/getApiKeys.png)
 
 Run
 ```shell script
@@ -271,7 +271,7 @@ The callback URL for your app must be added to the Allowed Callback URLs field i
 
 Having completed the previous steps, we must go to the `workspace` of the 8base account and in `app services -> authentication` create an authentication profile like this:
 
-![rn auth0](/public/media/addAuthProfile.png)
+![rn auth0](/media/addAuthProfile.png)
 
 #### Add authentication with Auth0
 

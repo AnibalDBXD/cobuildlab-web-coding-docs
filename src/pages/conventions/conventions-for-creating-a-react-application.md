@@ -146,7 +146,7 @@ React components can be classified in 2 major groups depending on how they fit i
 ## **6) Architecture**
 React applications must rely on the [Flux]([https://facebook.github.io/flux/](https://facebook.github.io/flux/)) Architecture propose by Facebook.
 
-![React Architecture](/public/media/react-architecture.png)
+![React Architecture](/media/react-architecture.png)
 
 ### General Rules
 1) Unidirectional flow always: View -> Actions -> Dispatcher -> Store -> View
