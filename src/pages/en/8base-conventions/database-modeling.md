@@ -1,7 +1,6 @@
 ---
 title: Database modeling
 description: Docs intro
-layout: ../../../layouts/MainLayout.astro
 ---
 
 # Naming convention for 8base Database modeling
